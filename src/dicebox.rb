@@ -115,7 +115,7 @@ module Rollem
               puts "ERROR: BOUNCING NEGATIVE METRES"
           end
         end
-
+        @output += " => " + IRColor.bold.to_s + total_roll.to_s + IRColor.clear.to_s
       end
 
       def to_s
