@@ -31,7 +31,7 @@ module Rollem
         puts "parsing " + troll.to_s
         @breakdown = Array.new()
         i = 0
-        case troll
+        case troll  #REMINDER: THIS IS HERE FOR MULTIPLE ROLL TYPES
           when $full_dice_regex
             while (not troll.empty?) and i < 30 ; i += 1
               case troll
@@ -70,9 +70,13 @@ module Rollem
               split = e.to_s.split('d')
               qty = split[0].to_i
               die = split[1].to_i
-              @output += "["
               minisum = 0
-              rollem(qty,die).each do |r|
+              rollyrollyrollroll = rollem(qty,die)
+              #Hides me brackets
+              #if rollyrollyrollroll.length > 1
+                @output += "["
+              #end
+              rollyrollyrollroll.each do |r|
                 if r == die       #coloring
                   @output += IRColor.bold.green.to_s + r.to_s + IRColor.clear.to_s
                 elsif r == 1
@@ -84,7 +88,11 @@ module Rollem
                 minisum += r
               end
               @output = @output[0..-4] #truncate final ' + '
-              @output += "]"
+
+              #Hides me brackets
+              #if rollyrollyrollroll.length > 1
+                @output += "]"
+              #end
               if action == :+
                 total_roll += minisum
               else

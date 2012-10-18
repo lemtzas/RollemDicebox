@@ -1,4 +1,23 @@
+# IRColor - based on string-irc https://github.com/banyan/string-irc
+# Provides static-and-reusable straight coloring for mIRC-compatible coloring
+#
+# Example use:
+# IRColor.red.to_s
+# IRColor.bold.to_s
+# IRColor.italics.green.to_s
+# IRColor.italics.green.blue.to_s #sets foreground to green, background to blue
+# Remember to use IRColor.clear.to_s where you want the coloring to end
 
+
+# This code released under MIT License (as was the original string-irc, Copyright (c) 2012 Kohei Hasegawa)
+##########################################################################################################
+#Copyright (C) 2012 Lemtzas
+#
+#    Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+#
+#The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+#
+#THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 class IRColor
 
