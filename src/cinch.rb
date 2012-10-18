@@ -4,6 +4,7 @@ $stop = false
 
 require 'cinch'
 require "cinch/plugins/identify"
+require './config.rb'
 require './rdb'
 
 #reload utility from http://stackoverflow.com/questions/3463182/reload-rubygem-in-irb
@@ -18,16 +19,18 @@ begin
   reload './rdb'
   reload './config'
 
+  $nick = $config[:nick]
+
   bot = Cinch::Bot.new do
     configure do |c|
-      c.server = 'irc.esper.net'
-      c.channels = ['#ThePond']
-      c.nick = $nick
+      c.server = $config[:server]
+      c.channels = $config[:channels]
+      c.nick = $config[:nick]
       c.plugins.plugins = [Cinch::Plugins::RollemDicebox, Cinch::Plugins::Identify]
       c.plugins.options[Cinch::Plugins::Identify] = {
-          :username => "Rollem",
-          :password => "mydicebringalltheboystotheyard",
-          :type     => :nickserv,
+          :username => $config[:nick],
+          :password => $config[:pass],
+          :type     => $config[:authtype]
       }
     end
 

@@ -22,8 +22,9 @@ module Cinch
             load './dicebox.rb'
           when $full_dice_regex
             dice = Rollem::Dicebox::Roll.new(m.message)
-            m.reply "I would roll...but that would be useful"
-            m.reply "instead..." + dice.to_s
+            #m.reply "I would roll...but that would be useful"
+            #m.reply "instead..." + dice.to_s
+            m.reply dice.to_s
         end
       end
     end

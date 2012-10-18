@@ -3,9 +3,6 @@ GEM
     cinch (2.0.3)
     cinch-identify (1.3.0)
       cinch (~> 2.0)
-    net-irc (0.0.9)
-    string-irc (0.2.3)
-      net-irc (~> 0.0.9)
 
 PLATFORMS
   x86-mingw32
@@ -13,4 +10,3 @@ PLATFORMS
 DEPENDENCIES
   cinch
   cinch-identify
-  string-irc

@@ -1,9 +1,8 @@
-
 #reload utility from http://stackoverflow.com/questions/3463182/reload-rubygem-in-irb
 def reload(require_regex)
   $".grep(/^#{require_regex}/).each {|e| $".delete(e) && require(e) }
 end
-
+require './ir_color'
 reload './ir_color'
 
 #match the roll at the beginning
@@ -60,37 +59,72 @@ module Rollem
             puts "OH GOD, PANIC"
         end
 
-        troll.each do |e|
+        @output ="#{@roll} => "
+        total_roll = 0
+        action = :+
+
+        @breakdown.each do |e|
           #TODO: process the matches here, perform rolls, and create the resulting string
+          case e
+            when /^\d*d\d+/      #rolls
+              split = e.to_s.split('d')
+              qty = split[0].to_i
+              die = split[1].to_i
+              @output += "["
+              minisum = 0
+              rollem(qty,die).each do |r|
+                if r == die       #coloring
+                  @output += IRColor.bold.green.to_s + r.to_s + IRColor.clear.to_s
+                elsif r == 1
+                  @output += IRColor.bold.red.to_s + r.to_s + IRColor.clear.to_s
+                else
+                  @output += r.to_s
+                end
+                @output += ' + '
+                minisum += r
+              end
+              @output = @output[0..-4] #truncate final ' + '
+              @output += "]"
+              if action == :+
+                total_roll += minisum
+              else
+                total_roll -= minisum
+              end
+            when /^\d+/          #constants
+              @output += e.to_s
+              if action == :+
+                total_roll += e.to_i
+              else
+                total_roll -= e.to_i
+              end
+            when /^\+/           #addition
+              @output += ' + '
+              action = :+
+            when /^-/            #subtraction
+              @output += ' - '
+              action = :-
+            else
+              puts "ERROR: BOUNCING NEGATIVE METRES"
+          end
         end
 
       end
 
       def to_s
         #IRColor.red.bold.to_s
-        @roll.to_s + " | " + @flavor.to_s + " | " + @breakdown.to_s
-      end
-    end
-
-
-    #ROLL HEADS
-    def roll(line)
-      sections = line.split(';')
-
-      puts (sections.to_s)
-
-      rolls = Array.new(sections.count)
-
-      #distinguish rolls
-      sections.each_index do |i|
-        rolls[i] = Roll.new(sections[i]);
+        #@roll.to_s + " | " + @flavor.to_s + " | " + @breakdown.to_s
+        @output
       end
 
-      rolls.each do |r|
-        puts ("r: " + r.to_s)
-      end
 
-      puts (sections.to_s)
+      #ROLL HEADS
+      def rollem(qty,die)
+        rolls = Array.new
+        qty.times do
+          rolls.push(rand(1..die))
+        end
+        rolls
+      end
     end
   end
 end

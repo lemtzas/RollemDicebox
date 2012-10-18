@@ -7,8 +7,6 @@
     <orderEntry type="library" scope="PROVIDED" name="bundler (v1.2.1, ruby-1.9.3-p194) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="cinch (v2.0.3, ruby-1.9.3-p194) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="cinch-identify (v1.3.0, ruby-1.9.3-p194) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="net-irc (v0.0.9, ruby-1.9.3-p194) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="string-irc (v0.2.3, ruby-1.9.3-p194) [gem]" level="application" />
   </component>
 </module>
 
