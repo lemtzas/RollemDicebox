@@ -1,0 +1,3 @@
+aliases:
+  52: standard
+  single: standard

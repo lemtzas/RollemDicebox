@@ -1,0 +1,9 @@
+Format:
+
+decks
+ + server1
+ |  + #channel
+ |  \ #channel-2
+ |
+ \ server2
+    \ #channel-2

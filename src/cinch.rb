@@ -4,8 +4,12 @@ $stop = false
 
 require 'cinch'
 require "cinch/plugins/identify"
+require "./plugin_management"
+require "./search"
+require './plugins/url_title'
 require './config.rb'
 require './rdb'
+require './plugins/cards'
 
 #reload utility from http://stackoverflow.com/questions/3463182/reload-rubygem-in-irb
 def reload(require_regex)
@@ -16,8 +20,12 @@ begin
 
   reload 'cinch'
   reload "cinch/plugins/identify"
+  reload "./plugin_management"
+  reload "./search"
   reload './rdb'
   reload './config'
+  reload "./plugins/url_title"
+  reload "./plugins/cards"
 
   $nick = $config[:nick]
 
@@ -26,7 +34,11 @@ begin
       c.server = $config[:server]
       c.channels = $config[:channels]
       c.nick = $config[:nick]
-      c.plugins.plugins = [Cinch::Plugins::RollemDicebox, Cinch::Plugins::Identify]
+      c.plugins.plugins = [Cinch::Plugins::RollemDicebox,
+                           Cinch::Plugins::Identify,
+                           Cinch::Plugins::PluginManagement,
+                           Cinch::Plugins::UrlTitle,
+                           Cinch::Plugins::Cards]
       c.plugins.options[Cinch::Plugins::Identify] = {
           :username => $config[:nick],
           :password => $config[:pass],
